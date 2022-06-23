@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class MoveInLanes : MonoBehaviour
 {
+    // Variable to know where the player is and an extra variable so that we don't need
+    // to create another one inside Move() function that will be called every move
     private int playerCurrentLane;
     private int laneIndex;
-    private void Awake()
-    {
-        playerCurrentLane = 1;
-    }
+
     private void Start()
     {
         // The player will always start at the second lane
+        playerCurrentLane = 1;
         this.transform.position = LaneInformation.GetPlayerLanePosition(playerCurrentLane);
     }
 
