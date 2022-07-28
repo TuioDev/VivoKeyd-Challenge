@@ -1,14 +1,13 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
 
 public class LevelLoader
 {
-    public static MusicConfiguration Load(LevelLoaderConfiguration configuration) {
-        if(configuration.IsLocalFile)
+    public static MusicConfiguration Load(LevelLoaderConfiguration configuration)
+    {
+        if (configuration.IsLocalFile)
         {
-            switch(configuration.FileType)
+            switch (configuration.FileType)
             {
                 case LevelLoaderFileType.Json:
                     string json = File.ReadAllText(configuration.FilePath);
