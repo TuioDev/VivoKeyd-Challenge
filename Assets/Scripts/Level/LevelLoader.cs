@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Newtonsoft.Json;
+using System.IO;
 using UnityEngine;
 
 public class LevelLoader
@@ -11,7 +12,7 @@ public class LevelLoader
             {
                 case LevelLoaderFileType.Json:
                     string json = File.ReadAllText(configuration.FilePath);
-                    JsonUtility.FromJsonOverwrite(json, configuration.MusicConfiguration);
+                    configuration.MusicConfiguration = JsonConvert.DeserializeObject<MusicConfiguration>(json);
                     break;
                 default:
                     break;

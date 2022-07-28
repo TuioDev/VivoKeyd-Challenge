@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,6 @@ public class MusicConfiguration : ScriptableObject
     public string artist;
     public string file;
     public int amountOfLanes;
-    public List<TimingConfiguration> timings;
-    public List<HittableObject> hittables;
+    public List<TimingConfiguration> timings = new List<TimingConfiguration>();
+    public List<HittableObject> hittables = new List<HittableObject>();
 }

@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class TimingConfiguration : ScriptableObject
+public class TimingConfiguration
 {
     public int bpm;
     public float offSet;

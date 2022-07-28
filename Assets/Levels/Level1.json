@@ -1,1 +1,64 @@
-{"musicConfiguration":{"name":"Musica 1","artist":"Eu","file":"Musica_01.mp4","amountOfLanes":4,"timings":[{"bpm":180,"offSet":0.55,"volume":0.80}],"hittables":[{"hittableType":"Enemy","hittableName":"Inimigo 1","maxHitpoints":1,"damageOnHit":1,"showUpBeat":1,"movePerBeat":1,"moveBackAmountWhenDamaged":1,"moveBackAmountWhenDamaging":1,"lanesOccupation":[true,false,false,false]},{"hittableType":"Enemy","hittableName":"Inimigo 2","maxHitpoints":2,"damageOnHit":1,"showUpBeat":2,"movePerBeat":1,"moveBackAmountWhenDamaged":2,"moveBackAmountWhenDamaging":2,"lanesOccupation":[false,true,false,false]},{"hittableType":"Enemy","hittableName":"Inimigo 1","maxHitpoints":1,"damageOnHit":1,"showUpBeat":3,"movePerBeat":1,"moveBackAmountWhenDamaged":1,"moveBackAmountWhenDamaging":1,"lanesOccupation":[false,false,true,false]},{"hittableType":"Enemy","hittableName":"Inimigo 2","maxHitpoints":2,"damageOnHit":1,"showUpBeat":4,"movePerBeat":1,"moveBackAmountWhenDamaged":2,"moveBackAmountWhenDamaging":2,"lanesOccupation":[false,false,false,true]},{"hittableType":"Enemy","hittableName":"Inimigo 2","maxHitpoints":2,"damageOnHit":1,"showUpBeat":2,"movePerBeat":1,"moveBackAmountWhenDamaged":2,"moveBackAmountWhenDamaging":2,"lanesOccupation":[false,true,false,false]}]}}
+{
+	"musicName": "Musica 1",
+	"artist": "Eu",
+	"file": "Musica_01.mp4",
+	"amountOfLanes": 4,
+	"timings": [{
+			"bpm": 180,
+			"offSet": 0.55,
+			"volume": 0.80
+		}
+	],
+	"hittables": [{
+			"hittableType": "Enemy",
+			"hittableName": "Inimigo 1",
+			"maxHitpoints": 1,
+			"damageOnHit": 1,
+			"showUpBeat": 1,
+			"movePerBeat": 1,
+			"moveBackAmountWhenDamaged": 1,
+			"moveBackAmountWhenDamaging": 1,
+			"lanesOccupation": [true, false, false, false]
+		}, {
+			"hittableType": "Enemy",
+			"hittableName": "Inimigo 2",
+			"maxHitpoints": 2,
+			"damageOnHit": 1,
+			"showUpBeat": 2,
+			"movePerBeat": 1,
+			"moveBackAmountWhenDamaged": 2,
+			"moveBackAmountWhenDamaging": 2,
+			"lanesOccupation": [false, true, false, false]
+		}, {
+			"hittableType": "Enemy",
+			"hittableName": "Inimigo 1",
+			"maxHitpoints": 1,
+			"damageOnHit": 1,
+			"showUpBeat": 3,
+			"movePerBeat": 1,
+			"moveBackAmountWhenDamaged": 1,
+			"moveBackAmountWhenDamaging": 1,
+			"lanesOccupation": [false, false, true, false]
+		}, {
+			"hittableType": "Enemy",
+			"hittableName": "Inimigo 2",
+			"maxHitpoints": 2,
+			"damageOnHit": 1,
+			"showUpBeat": 4,
+			"movePerBeat": 1,
+			"moveBackAmountWhenDamaged": 2,
+			"moveBackAmountWhenDamaging": 2,
+			"lanesOccupation": [false, false, false, true]
+		}, {
+			"hittableType": "Enemy",
+			"hittableName": "Inimigo 2",
+			"maxHitpoints": 2,
+			"damageOnHit": 1,
+			"showUpBeat": 2,
+			"movePerBeat": 1,
+			"moveBackAmountWhenDamaged": 2,
+			"moveBackAmountWhenDamaging": 2,
+			"lanesOccupation": [false, true, false, false]
+		}
+	]
+}

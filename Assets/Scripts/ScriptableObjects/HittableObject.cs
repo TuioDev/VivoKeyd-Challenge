@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class HittableObject : ScriptableObject
+public class HittableObject
 {
     public string hittableType;
     public string hittableName;
@@ -12,5 +10,5 @@ public class HittableObject : ScriptableObject
     public int movePerBeat;
     public int moveBackAmountWhenDamaged;
     public int moveBackAmountWhenDamaging;
-    public List<bool> lanesOccupation;
+    public List<bool> lanesOccupation = new List<bool>();
 }
