@@ -1,9 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Newtonsoft.Json;
+using System;
+using System.IO;
+using UnityEngine;
 
-public abstract class LevelLoader
+public class LevelLoader
 {
-    public abstract MusicConfiguration LoadMusicConfiguration();
+    public static MusicConfiguration Load(LevelLoaderConfiguration configuration) {
+        if(configuration.IsLocalFile)
+        {
+            switch(configuration.FileType)
+            {
+                case LevelLoaderFileType.Json:
+                    string json = File.ReadAllText(configuration.FilePath);
+                    JsonUtility.FromJsonOverwrite(json, configuration.MusicConfiguration);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return configuration.MusicConfiguration;
+    }
+
+    public static MusicConfiguration LoadFromLocalJSON(MusicConfiguration musicConfiguration, string filePath)
+    {
+        return Load(LevelLoaderConfiguration.LocalJSONFile(musicConfiguration, filePath));
+    }
 }
 
