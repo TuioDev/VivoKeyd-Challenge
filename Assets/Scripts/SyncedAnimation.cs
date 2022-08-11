@@ -36,9 +36,9 @@ public class SyncedAnimation : MonoBehaviour
     void Update()
     {
         //Calculate the loop position
-        if (Conductor.instance.songPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
+        if (Conductor.Instance.songPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
             completedLoops++;
-        loopPositionInBeats = Conductor.instance.songPositionInBeats - (completedLoops * beatsPerLoop);
+        loopPositionInBeats = Conductor.Instance.songPositionInBeats - (completedLoops * beatsPerLoop);
         //Start playing the current animation from wherever the current conductor loop is
         animator.Play(currentState, -1, (loopPositionInBeats / beatsPerLoop)
                                             /*THIS VALUE IS THE POSITION OF THE ANIMATION

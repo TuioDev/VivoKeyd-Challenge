@@ -12,7 +12,7 @@ public class LevelLoader
             {
                 case LevelLoaderFileType.Json:
                     string json = File.ReadAllText(configuration.FilePath);
-                    configuration.MusicConfiguration = JsonConvert.DeserializeObject<MusicConfiguration>(json);
+                    JsonConvert.PopulateObject(json, configuration.MusicConfiguration);
                     break;
                 default:
                     break;

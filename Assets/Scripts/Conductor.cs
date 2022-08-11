@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Conductor : MonoBehaviour
+public class Conductor : Singleton<Conductor>
 {
     //Song beats per minute
     //This is determined by the song you're trying to sync up to
-    public float songBpm;
+    [SerializeField] private float songBpm;
 
     //The number of seconds for each song beat
     public float secPerBeat;
@@ -40,18 +40,26 @@ public class Conductor : MonoBehaviour
     //MOVED TO THE SyncedAnimation, now every animation executes the value for their animation
     //public float loopPositionInAnalog;
 
-    public static Conductor instance;
-
-    void Awake()
+    protected override void Awake()
     {
-        instance = this;
+        
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void LoadFromLevelManager()
     {
-        //Load the AudioSource attached to the Conductor GameObject
+        var music = LevelManager.Instance.CurrentMusicConfiguration;
+
+        //Set the BPM of the song based on the LevelManager current song
+        songBpm = music.timings[0].bpm;
+
+        firstBeatOffset = music.timings[0].offSet;
+
         musicSource = GetComponent<AudioSource>();
+
+        musicSource.volume = music.timings[0].volume;
+
+        musicSource.clip = LevelManager.Instance.CurrentAudioClip;
 
         //Calculate the number of seconds in each beat
         secPerBeat = 60f / songBpm;
@@ -61,18 +69,21 @@ public class Conductor : MonoBehaviour
 
 
         //Start the music
-        musicSource.Play();
+        
     }
 
     // Update is called once per frame
     void Update()
+    {
+    }
+
+    void CalculateSongPosition()
     {
         //determine how many seconds since the song started
         songPosition = (float)((AudioSettings.dspTime - dspSongTime) * musicSource.pitch) - firstBeatOffset;
 
         //determine how many beats since the song started
         songPositionInBeats = songPosition / secPerBeat;
-
-        
     }
+
 }
