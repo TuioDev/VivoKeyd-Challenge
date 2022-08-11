@@ -42,7 +42,7 @@ public class Conductor : Singleton<Conductor>
 
     protected override void Awake()
     {
-        
+        base.Awake();
     }
 
     // Start is called before the first frame update
@@ -69,7 +69,7 @@ public class Conductor : Singleton<Conductor>
 
 
         //Start the music
-        
+        musicSource.Play();
     }
 
     // Update is called once per frame
