@@ -1,18 +1,22 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-
-public class SpawnManager : MonoBehaviour
+using System.Linq;
+public class SpawnManager : Singleton<SpawnManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    public List<HittableObject> SpawnedAlready { get; private set; }
+
+    protected override void Awake()
     {
-        
+        SpawnedAlready = new List<HittableObject>();
+        base.Awake();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SpawnByBeat(int beat)
     {
-        
+        var hittables = LevelManager.Instance.CurrentMusicConfiguration.hittables;
+        var hittable = hittables.Find(hittable => hittable.showUpBeat == beat && !SpawnedAlready.Contains(hittable));
+        if (hittable == null) return;
+
+        //Spawn hittable
+        SpawnedAlready.Add(hittable);
     }
 }

@@ -67,7 +67,6 @@ public class Conductor : Singleton<Conductor>
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
 
-
         //Start the music
         musicSource.Play();
     }
@@ -75,9 +74,14 @@ public class Conductor : Singleton<Conductor>
     // Update is called once per frame
     void Update()
     {
+        if(musicSource != null && musicSource.isPlaying)
+        {
+            CalculateSongPosition();
+            SpawnManager.Instance.SpawnByBeat((int)songPositionInBeats);
+        }
     }
 
-    void CalculateSongPosition()
+    private void CalculateSongPosition()
     {
         //determine how many seconds since the song started
         songPosition = (float)((AudioSettings.dspTime - dspSongTime) * musicSource.pitch) - firstBeatOffset;
