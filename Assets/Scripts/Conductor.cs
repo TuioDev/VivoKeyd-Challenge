@@ -27,6 +27,9 @@ public class Conductor : Singleton<Conductor>
     //This is MANUALLY determined, songPosition is negative during these first seconds
     public float firstBeatOffset;
 
+    // This value shows how fast the notes will travel between begin and end
+    public float beatsSpawnOffset = 3f;
+
     //the number of beats in each loop OF THE ANIMATION
     //public float beatsPerLoop;
 
@@ -45,7 +48,6 @@ public class Conductor : Singleton<Conductor>
         base.Awake();
     }
 
-    // Start is called before the first frame update
     public void LoadFromLevelManager()
     {
         var music = LevelManager.Instance.CurrentMusicConfiguration;

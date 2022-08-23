@@ -41,6 +41,5 @@ public class ControllerManager : MonoBehaviour
         {
             buttonAttack.Execute();
         }
-
     }
 }

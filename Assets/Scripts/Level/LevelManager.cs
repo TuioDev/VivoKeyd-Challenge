@@ -19,6 +19,7 @@ public class LevelManager : Singleton<LevelManager>
         
         CurrentMusicConfiguration = LevelLoader.LoadFromLocalJSON(CurrentMusicConfiguration, filesPath);
         var result = SoundLoaderManager.Instance.GetAudioClip($@"file://{filesPath}/{CurrentMusicConfiguration.file}", AudioType.MPEG);
+
         if(result.ErrorLoadingAudioClip != "")
         {
             Debug.LogError(result.ErrorLoadingAudioClip);
@@ -27,5 +28,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             CurrentAudioClip = result.AudioClip;
         }
+
+        SpawnManager.Instance.UpdateSpawnManagerList();
     }
 }

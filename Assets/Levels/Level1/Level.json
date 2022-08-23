@@ -58,7 +58,7 @@
 			"movePerBeat": 1,
 			"moveBackAmountWhenDamaged": 2,
 			"moveBackAmountWhenDamaging": 2,
-			"lanesOccupation": [false, true, false, false]
+			"lanesOccupation": [false, false, true, false]
 		}
 	]
 }
