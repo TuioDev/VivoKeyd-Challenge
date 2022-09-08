@@ -897,7 +897,7 @@ MonoBehaviour:
   dspSongTime: 0
   musicSource: {fileID: 0}
   firstBeatOffset: 0
-  beatsSpawnOffset: 3
+  beatsSpawnOffset: 12
   completedLoops: 0
 --- !u!1 &1024941450
 GameObject:

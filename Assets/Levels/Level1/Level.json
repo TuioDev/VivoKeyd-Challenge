@@ -1,11 +1,11 @@
 {
 	"musicName": "Musica 1",
 	"artist": "Eu",
-	"file": "Musica_01.mp3",
+	"file": "Musica_01.wav",
 	"amountOfLanes": 4,
 	"timings": [{
-			"bpm": 180,
-			"offSet": 0.55,
+			"bpm": 125,
+			"offSet": 0.1,
 			"volume": 0.80
 		}
 	],
