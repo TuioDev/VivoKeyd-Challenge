@@ -16,12 +16,13 @@ public class HittableBehaviour : MonoBehaviour
     public Vector3 beginningPosition;
     public Vector3 endingPosition;
 
-    public float enemyVelocity = 3.0f;
+    private float interpolateTime = 0f;
 
     /// Cheking the note if it can be pressed here might be wrong
     /// Better try to move it to the player or the AttackArea
     void Update()
     {
+        interpolateTime = InterpolateTime();
         InterpolatePosition();
 
         /// This should not be here, the ControllerManager is responsible of the inputs,
@@ -50,12 +51,7 @@ public class HittableBehaviour : MonoBehaviour
 
     private void InterpolatePosition()
     {
-        transform.position = Vector2.Lerp(
-        beginningPosition,
-        endingPosition,
-        //timeValue
-        3f
-        );
+        transform.position = Vector2.Lerp(beginningPosition, endingPosition, interpolateTime - 1);
     }
 
     private float InterpolateTime()

@@ -28,7 +28,7 @@ public class Conductor : Singleton<Conductor>
     public float firstBeatOffset;
 
     // This value shows how fast the notes will travel between begin and end
-    public float beatsSpawnOffset = 3f;
+    public float beatsSpawnOffset = 24f;
 
     //the number of beats in each loop OF THE ANIMATION
     //public float beatsPerLoop;
