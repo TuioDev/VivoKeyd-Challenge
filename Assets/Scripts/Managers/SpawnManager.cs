@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-public class SpawnManager : Singleton<SpawnManager>
+public class SpawnManager : ConductionDependetSingleton<SpawnManager>
 {
     public List<Transform> spawnPositionReference;
     public List<Transform> endPositionReference;
@@ -9,10 +9,6 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public List<HittableObject> SpawnedAlready { get; private set; }
     public List<HittableObject> Hittables { get; private set; }
-    public HittableObject hittable;
-
-    // If we use float, this value is the minimum value between hittables
-    public float beatThresholdValue;
 
     protected override void Awake()
     {
@@ -20,26 +16,26 @@ public class SpawnManager : Singleton<SpawnManager>
         Hittables = new List<HittableObject>();
         base.Awake();
     }
+    public override void OnMoveToNewBeat(ConductorSongInformation conductorSongInformation)
+    {
+        SpawnByBeat((int)conductorSongInformation.SongPositionInBeats);
+    }
 
     public void SpawnByBeat(int beat)
     {
-        do
+        HittableObject hittable = Hittables.Find(hittable => hittable.showUpBeat == beat && !SpawnedAlready.Contains(hittable));
+        if (hittable != null)
         {
-            hittable = Hittables.Find(hittable => hittable.showUpBeat == beat && !SpawnedAlready.Contains(hittable));
             SpawnedAlready.Add(hittable);
-            if (hittable != null)
-            {
-                Transform newHittable = (hittablesPrefabs.Find(t => t.name == hittable.hittableName));
-                Vector3 prefabPosition = GetHittableSpawnPosition(hittable.lanesOccupation.IndexOf(true));
-                Transform newPrefab = Instantiate(newHittable, prefabPosition, Quaternion.identity);
+            Transform newHittable = (hittablesPrefabs.Find(t => t.name == hittable.hittableName));
+            Vector3 prefabPosition = GetHittableSpawnPosition(hittable.lanesOccupation.IndexOf(true));
+            Transform newPrefab = Instantiate(newHittable, prefabPosition, Quaternion.identity);
 
-                newPrefab.GetComponent<HittableBehaviour>().SetHittableInformation(hittable);
+            newPrefab.GetComponent<HittableManager>().SetHittableInformation(hittable);
 
-                /// Change this for better understanding
-                newPrefab.GetComponent<HittableBehaviour>().beginningPosition = prefabPosition;
-                newPrefab.GetComponent<HittableBehaviour>().endingPosition = GetHittableEndPosition(hittable.lanesOccupation.IndexOf(true));
-            }
-        } while (hittable != null);
+            newPrefab.GetComponent<HittableManager>().beginningPosition = prefabPosition;
+            newPrefab.GetComponent<HittableManager>().endingPosition = GetHittableEndPosition(hittable.lanesOccupation.IndexOf(true));
+        }
     }
 
     public void UpdateSpawnManagerList()
@@ -58,7 +54,7 @@ public class SpawnManager : Singleton<SpawnManager>
     }
 
     // If the beat is a float, we use this to verify if the hittable is ready to spawn
-    private bool IsReadyInBeatToSpawn(float hittableBeat, float currentBeat)
+    private bool IsReadyInBeatToSpawn(float hittableBeat, float currentBeat, float beatThresholdValue)
     {
         return hittableBeat > currentBeat && hittableBeat < currentBeat + beatThresholdValue;
     }

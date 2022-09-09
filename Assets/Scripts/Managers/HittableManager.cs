@@ -1,16 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class HittableBehaviour : MonoBehaviour
+public class HittableManager : ConductionDependetSingleton<HittableManager>
 {
     public HittableObject HittableInformation { get => this.hittableInformation; private set => this.hittableInformation = value; }
     [SerializeField] private HittableObject hittableInformation;
-
-    // When the Enemy hitbox is whithin attack range, this will be true and the player hit will succed
     [SerializeField] private bool canBePressed = false;
-
-    // Which key to press
     [SerializeField] private KeyCode keyPressed;
 
     public Vector3 beginningPosition;
@@ -18,15 +12,12 @@ public class HittableBehaviour : MonoBehaviour
 
     private float interpolateTime = 0f;
 
-    /// Cheking the note if it can be pressed here might be wrong
-    /// Better try to move it to the player or the AttackArea
+    // Cheking the note if it can be pressed here might be wrong
+    // Better try to move it to the player or the AttackArea
     void Update()
     {
-        interpolateTime = InterpolateTime();
-        InterpolatePosition();
-
-        /// This should not be here, the ControllerManager is responsible of the inputs,
-        /// but it works for now
+        // This should not be here, the ControllerManager is responsible of the inputs,
+        // but it works for now
         if (Input.GetKeyDown(keyPressed))
         {
             if (canBePressed)
@@ -34,6 +25,12 @@ public class HittableBehaviour : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    public override void OnMoveToNewBeat(ConductorSongInformation conductorSongInformation)
+    {
+        interpolateTime = InterpolateTime(conductorSongInformation);
+        InterpolatePosition();
     }
 
     public void SetHittableInformation(HittableObject hittable)
@@ -54,13 +51,12 @@ public class HittableBehaviour : MonoBehaviour
         transform.position = Vector2.Lerp(beginningPosition, endingPosition, interpolateTime - 1);
     }
 
-    private float InterpolateTime()
+    private float InterpolateTime(ConductorSongInformation conductorSongInformation)
     {
-        return (Conductor.Instance.beatsSpawnOffset -
-            (HittableInformation.showUpBeat - Conductor.Instance.songPositionInBeats)) / Conductor.Instance.beatsSpawnOffset;
+        return (conductorSongInformation.BeatsSpawnOffset - (HittableInformation.showUpBeat - conductorSongInformation.SongPositionInBeats)) / conductorSongInformation.BeatsSpawnOffset;
     }
 
-    /// When entering the hit zone there will be different values maybe?
+    // When entering the hit zone there will be different values maybe?
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "AttackArea")

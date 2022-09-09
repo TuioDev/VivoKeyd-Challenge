@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SyncedAnimation : MonoBehaviour
+public class AnimationManager : ConductionDependetSingleton<AnimationManager>
 {
     //The animator controller attached to this GameObject
     public Animator animator;
@@ -19,6 +19,7 @@ public class SyncedAnimation : MonoBehaviour
 
     private float loopPositionInBeats;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,14 +32,11 @@ public class SyncedAnimation : MonoBehaviour
         //Convert the current state name to an integer hash for identification
         currentState = animatorStateInfo.fullPathHash;
     }
-
-    // Update is called once per frame
-    void Update()
+    public override void OnMoveToNewBeat(ConductorSongInformation conductorSongInformation)
     {
-        //Calculate the loop position
-        if (Conductor.Instance.songPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
+        if (conductorSongInformation.SongPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
             completedLoops++;
-        loopPositionInBeats = Conductor.Instance.songPositionInBeats - (completedLoops * beatsPerLoop);
+        loopPositionInBeats = conductorSongInformation.SongPositionInBeats - (completedLoops * beatsPerLoop);
         //Start playing the current animation from wherever the current conductor loop is
         animator.Play(currentState, -1, (loopPositionInBeats / beatsPerLoop)
                                             /*THIS VALUE IS THE POSITION OF THE ANIMATION

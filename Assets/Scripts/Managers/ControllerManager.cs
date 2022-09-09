@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControllerManager : MonoBehaviour
+public class ControllerManager : Singleton<ControllerManager>
 {
     // Reference of the player from the editor
     public GameObject objectThatMoves;
@@ -20,7 +20,6 @@ public class ControllerManager : MonoBehaviour
 
     private void Start()
     {
-        // Getting the scripts from the Player reference as objectThatMoves
         buttonUp = new MoveUpInLaneCommand(objectThatMoves.GetComponent<MoveInLanes>());
         buttonDown = new MoveDownInLaneCommand(objectThatMoves.GetComponent<MoveInLanes>());
         buttonAttack = new AttackCommand(objectThatMoves.GetComponent<PlayerAttack>());
@@ -28,7 +27,6 @@ public class ControllerManager : MonoBehaviour
 
     private void Update()
     {
-        /// We change this in the future based on the android touch input
         if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
             buttonUp.Execute();
