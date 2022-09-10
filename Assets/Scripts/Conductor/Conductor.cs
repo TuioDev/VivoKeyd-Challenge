@@ -10,17 +10,16 @@ public class Conductor : Singleton<Conductor>
 
     public void LoadFromLevelManager()
     {
-        var music = LevelManager.Instance.CurrentMusicConfiguration.timings[0];
+        var music = LevelManager.Instance.CurrentMusicConfiguration.Timings[0];
         MusicSource = GetComponent<AudioSource>();
-        MusicSource.volume = music.volume;
+        MusicSource.volume = music.Volume;
         MusicSource.clip = LevelManager.Instance.CurrentAudioClip;
 
-        ConductorSongInformation = new ConductorSongInformation(music.bpm, music.offSet, MusicSource.pitch, (float)AudioSettings.dspTime);
+        ConductorSongInformation = new ConductorSongInformation(music.Bpm, MusicSource.pitch, music.OffSet, (float)AudioSettings.dspTime);
 
         MusicSource.Play();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(MusicSource != null && MusicSource.isPlaying) UpdateSongPosition();
@@ -28,11 +27,16 @@ public class Conductor : Singleton<Conductor>
 
     private void UpdateSongPosition()
     {
-        int oldSongPositionInBeats = (int)ConductorSongInformation.SongPositionInBeats;
+        var oldSongPositionInBeats = ConductorSongInformation.SongPositionInBeats;
 
-        ConductorSongInformation.UodateSongPositionInSeconds();
-        int newSongPositionInBeats = (int)ConductorSongInformation.SongPositionInBeats;
+        ConductorSongInformation.UpdateSongPositionInSeconds();
+        var newSongPositionInBeats = ConductorSongInformation.SongPositionInBeats;
 
-        if (oldSongPositionInBeats != newSongPositionInBeats) MovedToNewBeat?.Invoke((ConductorSongInformation)ConductorSongInformation.Clone());
+        //Debug.Log($@"Old #{oldSongPositionInBeats}, New #{newSongPositionInBeats}");
+        if ((int)oldSongPositionInBeats != (int)newSongPositionInBeats)
+        {
+            //Debug.Log($@"Beat #{newSongPositionInBeats}");
+            MovedToNewBeat?.Invoke((ConductorSongInformation)ConductorSongInformation.Clone());
+        }
     }
 }

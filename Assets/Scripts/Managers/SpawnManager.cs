@@ -3,7 +3,6 @@ using UnityEngine;
 using System.Linq;
 public class SpawnManager : ConductionDependetSingleton<SpawnManager>
 {
-    public List<Transform> spawnPositionReference;
     public List<Transform> endPositionReference;
     public List<Transform> hittablesPrefabs;
 
@@ -23,39 +22,23 @@ public class SpawnManager : ConductionDependetSingleton<SpawnManager>
 
     public void SpawnByBeat(int beat)
     {
-        HittableObject hittable = Hittables.Find(hittable => hittable.showUpBeat == beat && !SpawnedAlready.Contains(hittable));
-        if (hittable != null)
+        List<HittableObject> hittables = Hittables.FindAll(hittable => hittable.ShowUpBeat == beat && !SpawnedAlready.Contains(hittable));
+        if (hittables == null || hittables.Count == 0) return;
+
+        foreach(HittableObject hittable in hittables)
         {
+            Debug.Log($@"Spawned #{hittable.HittableName}");
             SpawnedAlready.Add(hittable);
-            Transform newHittable = (hittablesPrefabs.Find(t => t.name == hittable.hittableName));
-            Vector3 prefabPosition = GetHittableSpawnPosition(hittable.lanesOccupation.IndexOf(true));
+            HittableManager.Instance.AddHittable(hittable);
+
+            Transform newHittable = (hittablesPrefabs.Find(t => t.name == hittable.HittableType));
+            Vector3 prefabPosition = GetHittableSpawnPosition(hittable.LanesOccupation.IndexOf(true));
             Transform newPrefab = Instantiate(newHittable, prefabPosition, Quaternion.identity);
-
-            newPrefab.GetComponent<HittableManager>().SetHittableInformation(hittable);
-
-            newPrefab.GetComponent<HittableManager>().beginningPosition = prefabPosition;
-            newPrefab.GetComponent<HittableManager>().endingPosition = GetHittableEndPosition(hittable.lanesOccupation.IndexOf(true));
         }
     }
 
     public void UpdateSpawnManagerList()
     {
-        Hittables = LevelManager.Instance.CurrentMusicConfiguration.hittables;
-    }
-
-    private Vector3 GetHittableSpawnPosition(int index)
-    {
-        return spawnPositionReference[index].transform.position;
-    }
-
-    private Vector3 GetHittableEndPosition(int index)
-    {
-        return endPositionReference[index].transform.position;
-    }
-
-    // If the beat is a float, we use this to verify if the hittable is ready to spawn
-    private bool IsReadyInBeatToSpawn(float hittableBeat, float currentBeat, float beatThresholdValue)
-    {
-        return hittableBeat > currentBeat && hittableBeat < currentBeat + beatThresholdValue;
+        Hittables = LevelManager.Instance.CurrentMusicConfiguration.Hittables;
     }
 }

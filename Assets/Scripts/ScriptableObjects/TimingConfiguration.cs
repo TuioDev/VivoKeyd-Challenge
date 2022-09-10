@@ -1,6 +1,6 @@
 public class TimingConfiguration
 {
-    public int bpm;
-    public float offSet;
-    public float volume;
+    public int Bpm;
+    public float OffSet;
+    public float Volume;
 }

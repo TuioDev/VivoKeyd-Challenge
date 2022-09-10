@@ -24,6 +24,8 @@ public class ConductorSongInformation : ICloneable
         Pitch = pitch;
         FirstBeatOffset = firstBeatOffset;
         DspSongTime = dspSongTime;
+
+        UpdateSongPositionInSeconds();
     }
 
     public ConductorSongInformation(float minutesPerBeat, float pitch, float firstBeatOffset, float dspSongTime, float songPositionInSeconds)
@@ -35,9 +37,11 @@ public class ConductorSongInformation : ICloneable
         SongPositionInSeconds = songPositionInSeconds;
     }
 
-    public void UodateSongPositionInSeconds()
+    public void UpdateSongPositionInSeconds()
     {
-        SongPositionInSeconds = (float)((AudioSettings.dspTime - DspSongTime) * Pitch) - FirstBeatOffset;
+        var dspNow = (float)AudioSettings.dspTime;
+        //Debug.Log($@"Original DSP #{DspSongTime}, Actual DSP #{dspNow}, Pitch #{Pitch}, OffSet #{FirstBeatOffset}");
+        SongPositionInSeconds = ((dspNow - DspSongTime) * Pitch) - FirstBeatOffset;
     }
 
     public object Clone()

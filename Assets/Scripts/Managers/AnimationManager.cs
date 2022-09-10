@@ -23,25 +23,24 @@ public class AnimationManager : ConductionDependetSingleton<AnimationManager>
     // Start is called before the first frame update
     void Start()
     {
-        //Load the animator attached to this object
         animator = GetComponent<Animator>();
-
-        //Get the info about the current animator state
-        animatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
-
-        //Convert the current state name to an integer hash for identification
-        currentState = animatorStateInfo.fullPathHash;
     }
+
+    private int GetCurrentState()
+    {
+        animatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        return animatorStateInfo.fullPathHash;
+    }
+
     public override void OnMoveToNewBeat(ConductorSongInformation conductorSongInformation)
     {
-        if (conductorSongInformation.SongPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
-            completedLoops++;
-        loopPositionInBeats = conductorSongInformation.SongPositionInBeats - (completedLoops * beatsPerLoop);
-        //Start playing the current animation from wherever the current conductor loop is
-        animator.Play(currentState, -1, (loopPositionInBeats / beatsPerLoop)
-                                            /*THIS VALUE IS THE POSITION OF THE ANIMATION
-                                            BETWEEN 0 AND 1, FROM START TO END*/);
-        //Set the speed to 0 so it will only change frames when you next update it
-        animator.speed = 0;
+        //if (conductorSongInformation.SongPositionInBeats >= (completedLoops + 1) * beatsPerLoop) completedLoops++;
+
+        //loopPositionInBeats = conductorSongInformation.SongPositionInBeats - (completedLoops * beatsPerLoop);
+        ////Start playing the current animation from wherever the current conductor loop is
+        ////THIS VALUE IS THE POSITION OF THE ANIMATION BETWEEN 0 AND 1, FROM START TO END
+        //animator.Play(GetCurrentState(), -1, (loopPositionInBeats / beatsPerLoop));
+        ////Set the speed to 0 so it will only change frames when you next update it
+        //animator.speed = 0;
     }
 }

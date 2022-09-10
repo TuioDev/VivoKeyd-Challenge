@@ -3,13 +3,14 @@ using System.Collections.Generic;
 [System.Serializable]
 public class HittableObject
 {
-    public string hittableType;
-    public string hittableName;
-    public int maxHitpoints;
-    public int damageOnHit;
-    public int showUpBeat;
-    public int movePerBeat;
-    public int moveBackAmountWhenDamaged;
-    public int moveBackAmountWhenDamaging;
-    public List<bool> lanesOccupation = new List<bool>();
+    public string HittableType;
+    public string HittableName;
+    public int MaxHitpoints;
+    public int DamageOnHit;
+    public int ShowUpBeat;
+    public int CurrentPositionBeat;
+    public int MovePerBeat;
+    public int MoveBackAmountWhenDamaged;
+    public int MoveBackAmountWhenDamaging;
+    public List<bool> LanesOccupation = new();
 }

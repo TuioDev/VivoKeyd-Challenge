@@ -6,7 +6,7 @@
 	"timings": [{
 			"bpm": 125,
 			"offSet": 0.1,
-			"volume": 0.80
+			"volume": 0.5
 		}
 	],
 	"hittables": [{
@@ -31,7 +31,7 @@
 			"lanesOccupation": [false, true, false, false]
 		}, {
 			"hittableType": "Enemy",
-			"hittableName": "Inimigo 1",
+			"hittableName": "Inimigo 3",
 			"maxHitpoints": 1,
 			"damageOnHit": 1,
 			"showUpBeat": 3,
@@ -41,7 +41,7 @@
 			"lanesOccupation": [false, false, true, false]
 		}, {
 			"hittableType": "Enemy",
-			"hittableName": "Inimigo 2",
+			"hittableName": "Inimigo 4",
 			"maxHitpoints": 2,
 			"damageOnHit": 1,
 			"showUpBeat": 4,
@@ -51,7 +51,7 @@
 			"lanesOccupation": [false, false, false, true]
 		}, {
 			"hittableType": "Enemy",
-			"hittableName": "Inimigo 2",
+			"hittableName": "Inimigo 5",
 			"maxHitpoints": 2,
 			"damageOnHit": 1,
 			"showUpBeat": 2,
