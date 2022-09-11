@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveInLanes : MonoBehaviour
@@ -21,16 +19,7 @@ public class MoveInLanes : MonoBehaviour
 
     private void Move(int playerNextIndex)
     {
-        playerCurrentLane = LaneIndexLimitation(playerNextIndex + playerCurrentLane);
-        Vector3 newPosition = LevelManager.Instance.PlayerPositionPerLane.GetValueOrDefault(playerCurrentLane);
-        this.transform.position = newPosition;
-    }
-
-    private int LaneIndexLimitation(int lane)
-    {
-        var min = LevelManager.Instance.MinLaneIndex;
-        var max = LevelManager.Instance.MaxLaneIndex;
-
-        return lane < min ? min : lane > max ? max : lane;
+        playerCurrentLane = LevelManager.Instance.FixLaneIndexBoundaries(playerNextIndex + playerCurrentLane);
+        this.transform.position = LevelManager.Instance.GetPlayerPositionInLane(playerCurrentLane);
     }
 }

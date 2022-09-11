@@ -2,20 +2,22 @@
 	"musicName": "Musica 1",
 	"artist": "Eu",
 	"file": "Musica_01.wav",
-	"amountOfLanes": 4,
-	"amountOfLaneSlots": 10,
+	"amountOfLanes": 8,
+	"amountOfLaneSlots": 20,
 	"timings": [
 		{
 			"bpm": 125,
 			"offSet": 0.1,
-			"volume": 0.5
+			"volume": 0.1
 		}
 	],
 	"hittables": [
 		{
+			"guid": "4a81ae5f-9065-4e21-be98-de84bc4dd014",
 			"hittableType": "Enemy",
 			"hittableName": "Inimigo 1",
 			"maxHitpoints": 1,
+			"currentDamageTaken": 0,
 			"damageOnHit": 1,
 			"showUpBeat": 1,
 			"movePerBeat": 1,
@@ -29,9 +31,11 @@
 			]
 		},
 		{
+			"guid": "c4e0c394-e4e8-441f-9f34-9e213ac8de18",
 			"hittableType": "Enemy",
 			"hittableName": "Inimigo 2",
 			"maxHitpoints": 2,
+			"currentDamageTaken": 0,
 			"damageOnHit": 1,
 			"showUpBeat": 2,
 			"movePerBeat": 1,
@@ -45,9 +49,11 @@
 			]
 		},
 		{
+			"guid": "e399db49-bdfa-4b3f-85e7-37fbf730e25c",
 			"hittableType": "Enemy",
-			"hittableName": "Inimigo 3",
-			"maxHitpoints": 3,
+			"hittableName": "Inimigo 1",
+			"maxHitpoints": 1,
+			"currentDamageTaken": 0,
 			"damageOnHit": 1,
 			"showUpBeat": 3,
 			"movePerBeat": 1,
@@ -55,70 +61,78 @@
 			"moveBackAmountWhenDamaging": 1,
 			"lanesOccupation": [
 				false,
-				true,
 				false,
+				true,
 				false
 			]
 		},
 		{
+			"guid": "802d55ef-4bea-4d4b-a69a-c7c7186da5a7",
 			"hittableType": "Enemy",
-			"hittableName": "Inimigo 4",
+			"hittableName": "Inimigo 1",
 			"maxHitpoints": 1,
-			"damageOnHit": 5,
+			"currentDamageTaken": 0,
+			"damageOnHit": 1,
 			"showUpBeat": 4,
-			"movePerBeat": 3,
+			"movePerBeat": 1,
 			"moveBackAmountWhenDamaged": 1,
 			"moveBackAmountWhenDamaging": 1,
 			"lanesOccupation": [
 				false,
 				false,
+				false,
+				true
+			]
+		},
+		{
+			"guid": "1fd18686-6634-476c-a698-368b4ebe0749",
+			"hittableType": "Enemy",
+			"hittableName": "Inimigo 5",
+			"maxHitpoints": 20,
+			"currentDamageTaken": 0,
+			"damageOnHit": 1,
+			"showUpBeat": 5,
+			"movePerBeat": 1,
+			"moveBackAmountWhenDamaged": 20,
+			"moveBackAmountWhenDamaging": 20,
+			"lanesOccupation": [
 				true,
+				false,
+				false,
 				false
 			]
 		},
 		{
+			"guid": "0d78d233-9a5e-4f80-b3bb-b35e2445727c",
 			"hittableType": "Enemy",
-			"hittableName": "Inimigo 5",
-			"maxHitpoints": 20,
-			"damageOnHit": 1,
-			"showUpBeat": 5,
-			"movePerBeat": 1,
-			"moveBackAmountWhenDamaged": 20,
-			"moveBackAmountWhenDamaging": 20,
-			"lanesOccupation": [
-				false,
-				false,
-				false,
-				true
-			]
-		},
-		{
-			"hittableType": "Enemy",
-			"hittableName": "Inimigo 5",
-			"maxHitpoints": 20,
-			"damageOnHit": 1,
-			"showUpBeat": 5,
-			"movePerBeat": 1,
-			"moveBackAmountWhenDamaged": 20,
-			"moveBackAmountWhenDamaging": 20,
-			"lanesOccupation": [
-				false,
-				true,
-				false,
-				true
-			]
-		},
-		{
-			"hittableType": "Enemy",
-			"hittableName": "Inimigo 4",
+			"hittableName": "Inimigo 1",
 			"maxHitpoints": 1,
-			"damageOnHit": 5,
-			"showUpBeat": 5,
-			"movePerBeat": 3,
+			"currentDamageTaken": 0,
+			"damageOnHit": 1,
+			"showUpBeat": 6,
+			"movePerBeat": 2,
 			"moveBackAmountWhenDamaged": 1,
 			"moveBackAmountWhenDamaging": 1,
 			"lanesOccupation": [
+				false,
 				true,
+				false,
+				false
+			]
+		},
+		{
+			"guid": "484bbbec-4e2a-4376-adba-30fe8f8bc415",
+			"hittableType": "Enemy",
+			"hittableName": "Inimigo 1",
+			"maxHitpoints": 1,
+			"currentDamageTaken": 0,
+			"damageOnHit": 1,
+			"showUpBeat": 7,
+			"movePerBeat": 2,
+			"moveBackAmountWhenDamaged": 1,
+			"moveBackAmountWhenDamaging": 1,
+			"lanesOccupation": [
+				false,
 				false,
 				true,
 				false

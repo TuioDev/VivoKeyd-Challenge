@@ -178,8 +178,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BaseLane: {fileID: 229170595}
+  LanePrefab: {fileID: 2408242754694813832, guid: 1adc9b682da0022438b52b15c6cd2430, type: 3}
   LaneOffSetX: -1
   LaneOffSetY: -1
+  LaneSlotOffSetX: 1
+  LaneSlotOffSetY: 0
 --- !u!1 &351162219
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,14 +553,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83b01bcd42e0ba4db29d9e5e680aded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endPositionReference:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   hittablesPrefabs:
   - {fileID: 4979550095653916043, guid: 7d68b8b3e366b1040a7bed177b4e3b0d, type: 3}
-  - {fileID: 4979550095653916043, guid: 875a9e8a8f5fcca439feb862ca531a86, type: 3}
+  - {fileID: 4979550095653916043, guid: f181f1b4783b263479c35080c38ed7e5, type: 3}
+  - {fileID: 4979550095653916043, guid: 7622d7b733b3c984a818e6380194c838, type: 3}
+  - {fileID: 4979550095653916043, guid: 8f4fb98f45b124f439ac35a9e7f13520, type: 3}
+  - {fileID: 4979550095653916043, guid: 705ac4c9af0fdcc42b7ab9a6137a8e61, type: 3}
 --- !u!1 &701321696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,7 +1079,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2408242754694813832, guid: 1adc9b682da0022438b52b15c6cd2430, type: 3}
       propertyPath: m_Name
-      value: Lane
+      value: Lane 0
       objectReference: {fileID: 0}
     - target: {fileID: 2408242754694813833, guid: 1adc9b682da0022438b52b15c6cd2430, type: 3}
       propertyPath: m_RootOrder
@@ -1086,11 +1087,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2408242754694813833, guid: 1adc9b682da0022438b52b15c6cd2430, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2408242754694813833, guid: 1adc9b682da0022438b52b15c6cd2430, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2408242754694813833, guid: 1adc9b682da0022438b52b15c6cd2430, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1124,6 +1125,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6118725106052706590, guid: 1adc9b682da0022438b52b15c6cd2430, type: 3}
+      propertyPath: IsBase
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1adc9b682da0022438b52b15c6cd2430, type: 3}
 --- !u!1 &1321959534
@@ -1150,7 +1155,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321959534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalPosition: {x: -10, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -13,9 +13,13 @@ public class HittableManager : ConductionDependetSingleton<HittableManager>
 
     public override void OnMoveToNewBeat(ConductorSongInformation conductorSongInformation)
     {
-        foreach(HittableObject hittable in Hittables)
+        for(int index = Hittables.Count - 1; index >= 0; index--)
         {
-            MoveHittable(hittable, hittable.MovePerBeat);
+            var hittable = Hittables[index];
+            if ((int)conductorSongInformation.SongPositionInBeats > hittable.ShowUpBeat) //Do not move on the spawned beat
+            {
+                MoveHittable(hittable, hittable.MovePerBeat);
+            }
         }
     }
     public void AddHittable(HittableObject hittable)
@@ -25,7 +29,38 @@ public class HittableManager : ConductionDependetSingleton<HittableManager>
 
     private void MoveHittable(HittableObject hittable, int amountOfPositions, bool isToMoveAhead = true)
     {
+        int indexToMove = hittable.CurrentIndexInLane;
 
+        for (int laneIndex = 0; laneIndex < hittable.LanesOccupation.Count; laneIndex++)
+        {
+            if (!hittable.LanesOccupation[laneIndex]) continue;
+
+            indexToMove += amountOfPositions * (isToMoveAhead ? -1 : 1);
+            if(indexToMove <= LevelManager.Instance.MinSlotPositionInLane(laneIndex) && isToMoveAhead)
+            {
+                bool wasDestroyed = TakeDamageDestroyIfNeeded(hittable, 1); //Fixed Damage for now
+                if (wasDestroyed) return;
+
+                indexToMove += LevelManager.Instance.FixLaneSlotIndexBoundaries(laneIndex, amountOfPositions + hittable.MoveBackAmountWhenDamaged);
+            }
+
+            hittable.CurrentIndexInLane = indexToMove;
+            Vector3 newPosition = LevelManager.Instance.GetSlotPositionInLane(laneIndex, indexToMove);
+            hittable.transform.position = newPosition;
+        }   
     }
 
+    private bool TakeDamageDestroyIfNeeded(HittableObject hittable, int damage)
+    {
+        hittable.CurrentDamageTaken += damage;
+        if(hittable.CurrentDamageTaken >= hittable.MaxHitpoints)
+        {
+            Destroy(hittable.transform.gameObject);
+            Hittables.Remove(hittable);
+
+            return true;
+        }
+
+        return false;
+    }
 }
