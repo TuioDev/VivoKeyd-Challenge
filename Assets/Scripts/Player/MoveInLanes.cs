@@ -4,47 +4,33 @@ using UnityEngine;
 
 public class MoveInLanes : MonoBehaviour
 {
-    // Variable to know where the player is and an extra variable so that we don't need
-    // to create another one inside Move() function that will be called every move
-    private int playerCurrentLane;
-    private int laneIndex;
+    [SerializeField] private int UdwardLane = -1;
+    [SerializeField] private int DownwardLane = 1;
 
-    private void Start()
-    {
-        // The player will always start at the second lane
-        playerCurrentLane = 1;
-        this.transform.position = LaneInformation.GetPlayerLanePosition(playerCurrentLane);
-    }
+    private int playerCurrentLane = 0;
 
-    // Move the player to the lane above
     public void Upward()
     {
-        Move(1);
+        Move(UdwardLane);
     }
 
-    // Move the player to the lane below
     public void Downward()
     {
-        Move(-1);
+        Move(DownwardLane);
     }
 
-    // Will move the player to the lane next
     private void Move(int playerNextIndex)
     {
-        laneIndex = playerNextIndex + playerCurrentLane;
-        playerCurrentLane = LaneIndexLimitation(laneIndex);
-        Vector3 newPosition = LaneInformation.GetPlayerLanePosition(playerCurrentLane);
+        playerCurrentLane = LaneIndexLimitation(playerNextIndex + playerCurrentLane);
+        Vector3 newPosition = LevelManager.Instance.PlayerPositionPerLane.GetValueOrDefault(playerCurrentLane);
         this.transform.position = newPosition;
     }
 
-    // *TEMPORARY*
-    // One wy to clamp the lane index value because the Clamp fucntion is not working like we need
-    // If we change the amount of lanes or create mechanics that blocks lanes,
-    // THIS SHALL BE CHANGED
     private int LaneIndexLimitation(int lane)
     {
-        if (lane < 0) return 0;
-        if (lane > 3) return 3;
-        return lane;
+        var min = LevelManager.Instance.MinLaneIndex;
+        var max = LevelManager.Instance.MaxLaneIndex;
+
+        return lane < min ? min : lane > max ? max : lane;
     }
 }

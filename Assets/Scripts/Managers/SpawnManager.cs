@@ -27,13 +27,13 @@ public class SpawnManager : ConductionDependetSingleton<SpawnManager>
 
         foreach(HittableObject hittable in hittables)
         {
-            Debug.Log($@"Spawned #{hittable.HittableName}");
+            //Debug.Log($@"Spawned #{hittable.HittableName}");
             SpawnedAlready.Add(hittable);
             HittableManager.Instance.AddHittable(hittable);
 
-            Transform newHittable = (hittablesPrefabs.Find(t => t.name == hittable.HittableType));
-            Vector3 prefabPosition = GetHittableSpawnPosition(hittable.LanesOccupation.IndexOf(true));
-            Transform newPrefab = Instantiate(newHittable, prefabPosition, Quaternion.identity);
+            //Transform newHittable = (hittablesPrefabs.Find(t => t.name == hittable.HittableName));
+            //Vector3 prefabPosition = GetHittableSpawnPosition(hittable.LanesOccupation.IndexOf(true));
+            //Transform newPrefab = Instantiate(newHittable, prefabPosition, Quaternion.identity);
         }
     }
 
