@@ -5,7 +5,7 @@ using System;
 
 public class SpawnManager : ConductionDependetSingleton<SpawnManager>
 {
-    [SerializeField] private List<Transform> hittablesPrefabs;
+    [SerializeField] private List<Transform> HittablesPrefabs;
 
     public List<HittableObject> SpawnedAlready { get; private set; }
     public List<HittableObject> HittablesToSpawn { get; private set; }
@@ -31,7 +31,7 @@ public class SpawnManager : ConductionDependetSingleton<SpawnManager>
             SpawnedAlready.Add(hittable);
             HittableManager.Instance.AddHittable(hittable);
 
-            Transform newHittable = hittablesPrefabs.Find(t => t.name == hittable.HittableName);
+            Transform newHittable = HittablesPrefabs.Find(t => t.name == hittable.HittableName);
             for(int laneIndex = 0; laneIndex < hittable.LanesOccupation.Count; laneIndex++)
             {
                 if (!hittable.LanesOccupation[laneIndex]) continue;
