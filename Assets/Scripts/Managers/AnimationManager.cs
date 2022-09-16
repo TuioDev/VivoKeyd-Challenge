@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationManager : ConductionDependetSingleton<AnimationManager>
+public class AnimationManager : ConductionDependentSingleton<AnimationManager>
 {
     //The animator controller attached to this GameObject
     public Animator animator;

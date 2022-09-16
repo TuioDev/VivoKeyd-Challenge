@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 
-public class SpawnManager : ConductionDependetSingleton<SpawnManager>
+public class SpawnManager : ConductionDependentSingleton<SpawnManager>
 {
     [SerializeField] private List<Transform> HittablesPrefabs;
 

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HittableManager : ConductionDependetSingleton<HittableManager>
+public class HittableManager : ConductionDependentSingleton<HittableManager>
 {
     private List<HittableObject> Hittables;
 

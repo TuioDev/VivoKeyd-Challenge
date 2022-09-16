@@ -1,4 +1,4 @@
-﻿public abstract class ConductionDependetSingleton<T> : Singleton<T> where T : ConductionDependetSingleton<T>
+﻿public abstract class ConductionDependentSingleton<T> : Singleton<T> where T : ConductionDependentSingleton<T>
 {
     private void OnEnable()
     {
