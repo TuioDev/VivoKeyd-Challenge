@@ -32,11 +32,7 @@ public class PlayerManager : ConductionDependentSingleton<PlayerManager>
     }
     public override void OnMoveToNewBeat(ConductorSongInformation conductorSongInformation)
     {
-        Command command = ControllerManager.Instance.GetNextCommand();
-        if(command != null)
-        {
-            command.Execute();
-        }
+        ExecuteMoveCommand();
     }
 
     // Move functions
@@ -48,6 +44,14 @@ public class PlayerManager : ConductionDependentSingleton<PlayerManager>
         this.transform.position = LevelManager.Instance.GetPlayerPositionInLane(PlayerPositionReference.Y);
     }
 
+    private void ExecuteMoveCommand()
+    {
+        Command command = ControllerManager.Instance.GetNextCommand();
+        if (command != null)
+        {
+            command.Execute();
+        }
+    }
     // Attack functions
     public void Attack()
     {

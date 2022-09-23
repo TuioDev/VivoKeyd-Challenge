@@ -9,8 +9,6 @@ public class MovementCommand : Command
     [SerializeField] private int X;
     [SerializeField] private int Y;
 
-    //private MoveInLanes MoveInLanes;
-
     public override void Execute()
     {
         PlayerManager.Instance.Move(new Point(X, Y));
