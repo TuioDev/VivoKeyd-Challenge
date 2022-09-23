@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField] private float LaneSlotOffSetX;
     [SerializeField] private float LaneSlotOffSetY;
     private Dictionary<int, LaneInformation> Lanes;
+
     public int MaxSlotPositionInLane(int laneIndex) => Lanes[laneIndex].SlotsPosition.Count - 1;
 #pragma warning disable IDE0060 // Remove unused parameter
     public int MinSlotPositionInLane(int laneIndex) => 0;
