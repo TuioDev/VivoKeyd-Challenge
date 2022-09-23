@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class HittableManager : ConductionDependentSingleton<HittableManager>
@@ -38,6 +39,7 @@ public class HittableManager : ConductionDependentSingleton<HittableManager>
             indexToMove += amountOfPositions * (isToMoveAhead ? -1 : 1);
             if(indexToMove <= LevelManager.Instance.MinSlotPositionInLane(laneIndex) && isToMoveAhead)
             {
+                //TODO Need to separate this block on a new function to be used on the ApplyDamageIfPossible function
                 bool wasDestroyed = TakeDamageDestroyIfNeeded(hittable, 1); //Fixed Damage for now
                 if (wasDestroyed) return;
 
@@ -57,6 +59,19 @@ public class HittableManager : ConductionDependentSingleton<HittableManager>
         {
             Destroy(hittable.transform.gameObject);
             Hittables.Remove(hittable);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool ApplyDamageIfPossible(Point position, int damage)
+    {
+        if(true) //Verify if on the position there's any hittable
+        {
+            HittableObject hittable = new HittableObject();//Retrieve hittable
+            TakeDamageDestroyIfNeeded(hittable, damage);
 
             return true;
         }
