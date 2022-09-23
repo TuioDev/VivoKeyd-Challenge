@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : ConductionDependetSingleton<PlayerManager>
+public class PlayerManager : ConductionDependentSingleton<PlayerManager>
 {
     // Movement variables
     [SerializeField] private GameObject PlayerReference;
