@@ -7,8 +7,9 @@ public class MusicConfiguration : ScriptableObject
     public string MusicName;
     public string Artist;
     public string File;
+    public AudioType AudioType;
     public int AmountOfLanes;
     public int AmountOfLaneSlots;
-    public List<TimingConfiguration> Timings = new List<TimingConfiguration>();
-    public List<HittableObject> Hittables = new List<HittableObject>();
+    public List<TimingConfiguration> Timings = new();
+    public List<HittableObject> Hittables = new();
 }

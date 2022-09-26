@@ -2,6 +2,7 @@
 	"musicName": "Musica 1",
 	"artist": "Eu",
 	"file": "Musica_01.wav",
+	"audioType": 20,
 	"amountOfLanes": 8,
 	"amountOfLaneSlots": 20,
 	"timings": [

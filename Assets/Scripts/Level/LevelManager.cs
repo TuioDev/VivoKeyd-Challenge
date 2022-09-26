@@ -32,7 +32,7 @@ public class LevelManager : Singleton<LevelManager>
         string filesPath = $@"{Application.dataPath}/Levels/Level{levelIndex}";
 
         CurrentMusicConfiguration = LevelLoader.LoadFromLocalJSON(CurrentMusicConfiguration, filesPath);
-        var result = SoundLoaderManager.Instance.GetAudioClip($@"file://{filesPath}/{CurrentMusicConfiguration.File}", AudioType.WAV);
+        var result = SoundLoaderManager.Instance.GetAudioClip($@"file://{filesPath}/{CurrentMusicConfiguration.File}", CurrentMusicConfiguration.AudioType);
 
         if (result.ErrorLoadingAudioClip != "")
         {
