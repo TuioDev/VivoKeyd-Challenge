@@ -25,9 +25,6 @@ public class PlayerManager : ConductionDependentSingleton<PlayerManager>
     }
     private void Start()
     {
-        // PlayerManager will be with Player ou a PlayerManager object?
-        PlayerReference = this.gameObject;
-
         AttackSprite = PlayerAttackArea.GetComponent<SpriteRenderer>();
     }
     public override void OnMoveToNewBeat(ConductorSongInformation conductorSongInformation)
@@ -41,7 +38,7 @@ public class PlayerManager : ConductionDependentSingleton<PlayerManager>
         PlayerPositionReference.X += playerTranslate.X;
         PlayerPositionReference.Y += playerTranslate.Y;
 
-        this.transform.position = LevelManager.Instance.GetPlayerPositionInLane(PlayerPositionReference.Y);
+        PlayerReference.transform.position = LevelManager.Instance.GetPlayerPositionInLane(PlayerPositionReference.Y);
     }
 
     private void ExecuteMoveCommand()

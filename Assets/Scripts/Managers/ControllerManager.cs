@@ -65,16 +65,6 @@ public class ControllerManager : Singleton<ControllerManager>
         CommandQueue.AddLast(command);
         //Debug.Log($@"Command: {command.name}; Count before: {CommandQueue.Count}");
     }
-    // :)
-    //private void ExecuteCommandQueueOnBeat()
-    //{
-    //    while(CommandQueue.Count > 0)
-    //    {
-    //        CommandQueue.Dequeue();
-    //    }
-    //}
-
-
     public Command GetNextCommand()
     {
         if (CommandQueue.Count > 0)
