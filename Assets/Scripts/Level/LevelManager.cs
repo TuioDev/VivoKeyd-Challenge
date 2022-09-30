@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class LevelManager : Singleton<LevelManager>
 {
@@ -29,6 +30,9 @@ public class LevelManager : Singleton<LevelManager>
 
     public void LoadBuiltInLevel(int levelIndex)
     {
+        // Lose focus on the button
+        EventSystem.current.SetSelectedGameObject(null);
+
         string filesPath = $@"{Application.dataPath}/Levels/Level{levelIndex}";
 
         CurrentMusicConfiguration = LevelLoader.LoadFromLocalJSON(CurrentMusicConfiguration, filesPath);

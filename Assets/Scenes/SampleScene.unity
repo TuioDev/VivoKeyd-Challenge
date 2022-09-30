@@ -431,9 +431,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseLane: {fileID: 229170595}
   LanePrefab: {fileID: 2408242754694813832, guid: 1adc9b682da0022438b52b15c6cd2430, type: 3}
-  LaneOffSetX: -1
-  LaneOffSetY: -1
-  LaneSlotOffSetX: 1
+  LaneOffSetX: -2
+  LaneOffSetY: -1.5
+  LaneSlotOffSetX: 2
   LaneSlotOffSetY: 0
 --- !u!1 &351162219
 GameObject:
@@ -668,7 +668,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 461434623}
-  - component: {fileID: 461434624}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -693,19 +692,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &461434624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 461434621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 150f21387be9f25458abf0fe24a33b48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackArea: {fileID: 351162219}
 --- !u!1 &498662612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,6 +1034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4519b44cce84447950c676831ecd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamagedIndicatorTime: 0.5
 --- !u!1 &883628924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,6 +1513,7 @@ MonoBehaviour:
   MaxCommands: 1
   MoveUpward: {fileID: 11400000, guid: af0e961960cfb9b4aafb225207c00752, type: 2}
   MoveDownward: {fileID: 11400000, guid: c79e72989e514ae4a8b3ab734d639905, type: 2}
+  Attack: {fileID: 11400000, guid: 98b46e72136ddda4fa362a1450e73668, type: 2}
 --- !u!1 &1496706683
 GameObject:
   m_ObjectHideFlags: 0

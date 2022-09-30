@@ -41,7 +41,7 @@ public class SpawnManager : ConductionDependentSingleton<SpawnManager>
 
                 Transform hittablesParentInLane = LevelManager.Instance.GetHittablesParentInLane(laneIndex).transform;
                 hittable.transform = Instantiate(newHittable, indexAndPosition.Item2, Quaternion.identity, hittablesParentInLane);
-                hittable.transform.name = hittable.GUID;
+                hittable.transform.name = hittable.GUID; // Visual
             }
         }
     }
