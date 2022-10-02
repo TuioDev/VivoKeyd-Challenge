@@ -4,19 +4,11 @@ using UnityEngine;
 
 public class ControllerManager : Singleton<ControllerManager>
 {
-    // Commands that can be linked to different keys
-    //private Command ButtonUp;
-    //private Command ButtonDown;
-    //private Command ButtonAttack;
+    // MaxCommands guarantees that the player can only store 1 move, so he can replace a wrong input before the beat
     [SerializeField] private int MaxCommands = 1;
     [SerializeField] private Command MoveUpward;
     [SerializeField] private Command MoveDownward;
-
-    // *TEMPORARY VARIABLE*
-    // THIS WILL BE LINKED WITH THE CONDUCTOR CLASS PROBABLY
-    // Limiting the amout of moves that the player can perform in a amount of time
-
-    //private const float REPLAY_PAUSE_TIMER = 0.5f;
+    [SerializeField] private Command Attack;
 
     [SerializeField] private LinkedList<Command> CommandQueue;
 
@@ -25,21 +17,8 @@ public class ControllerManager : Singleton<ControllerManager>
         CommandQueue = new LinkedList<Command>(); 
         base.Awake();
     }
-    private void Start()
-    {
-        //ButtonUp = new MoveUpInLaneCommand(ObjectThatMoves.GetComponent<MoveInLanes>());
-        //ButtonDown = new MoveDownInLaneCommand(ObjectThatMoves.GetComponent<MoveInLanes>());
-        //ButtonAttack = new AttackCommand(ObjectThatMoves.GetComponent<PlayerAttack>());
-
-        // Now what do i put here to get commands...
-        // Maybe a list of commands and populate from editor?
-    }
-
     private void Update()
     {
-        // Check the beat and dequeue?
-
-
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
             EnqueueCommand(MoveUpward);
@@ -50,11 +29,8 @@ public class ControllerManager : Singleton<ControllerManager>
         }
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.L))
         {
-            //CommandQueue.Enqueue(ButtonAttack);
+            ExecuteCommandOffBeat(Attack);
         }
-
-        // Check if it is on the beat
-        // Dequeue everything
     }
     public void EnqueueCommand(Command command)
     {
@@ -64,6 +40,10 @@ public class ControllerManager : Singleton<ControllerManager>
         }
         CommandQueue.AddLast(command);
         //Debug.Log($@"Command: {command.name}; Count before: {CommandQueue.Count}");
+    }
+    public void ExecuteCommandOffBeat(Command command)
+    {
+        command.Execute();
     }
     public Command GetNextCommand()
     {

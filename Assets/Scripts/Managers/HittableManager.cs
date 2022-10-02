@@ -1,20 +1,22 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using UnityEngine;
 
 public class HittableManager : ConductionDependentSingleton<HittableManager>
 {
     private List<HittableObject> Hittables;
+    [SerializeField] private float DamagedIndicatorTime = .5f;
 
     protected override void Awake()
     {
         Hittables = new List<HittableObject>();
         base.Awake();
     }
-
     public override void OnMoveToNewBeat(ConductorSongInformation conductorSongInformation)
     {
-        for(int index = Hittables.Count - 1; index >= 0; index--)
+        for (int index = Hittables.Count - 1; index >= 0; index--)
         {
             var hittable = Hittables[index];
             if ((int)conductorSongInformation.SongPositionInBeats > hittable.ShowUpBeat) //Do not move on the spawned beat
@@ -25,9 +27,8 @@ public class HittableManager : ConductionDependentSingleton<HittableManager>
     }
     public void AddHittable(HittableObject hittable)
     {
-        if(!Hittables.Contains(hittable)) Hittables.Add(hittable);
+        if (!Hittables.Contains(hittable)) Hittables.Add(hittable);
     }
-
     private void MoveHittable(HittableObject hittable, int amountOfPositions, bool isToMoveAhead = true)
     {
         int indexToMove = hittable.CurrentIndexInLane;
@@ -37,7 +38,7 @@ public class HittableManager : ConductionDependentSingleton<HittableManager>
             if (!hittable.LanesOccupation[laneIndex]) continue;
 
             indexToMove += amountOfPositions * (isToMoveAhead ? -1 : 1);
-            if(indexToMove <= LevelManager.Instance.MinSlotPositionInLane(laneIndex) && isToMoveAhead)
+            if (indexToMove <= LevelManager.Instance.MinSlotPositionInLane(laneIndex) && isToMoveAhead)
             {
                 //TODO Need to separate this block on a new function to be used on the ApplyDamageIfPossible function
                 bool wasDestroyed = TakeDamageDestroyIfNeeded(hittable, 1); //Fixed Damage for now
@@ -49,33 +50,37 @@ public class HittableManager : ConductionDependentSingleton<HittableManager>
             hittable.CurrentIndexInLane = indexToMove;
             Vector3 newPosition = LevelManager.Instance.GetSlotPositionInLane(laneIndex, indexToMove);
             hittable.transform.position = newPosition;
-        }   
+        }
     }
-
     private bool TakeDamageDestroyIfNeeded(HittableObject hittable, int damage)
     {
         hittable.CurrentDamageTaken += damage;
-        if(hittable.CurrentDamageTaken >= hittable.MaxHitpoints)
+
+        if (hittable.CurrentDamageTaken >= hittable.MaxHitpoints)
         {
             Destroy(hittable.transform.gameObject);
             Hittables.Remove(hittable);
 
-            return true;
+            return true; // Dead
         }
-
-        return false;
+        StartCoroutine(WasDamagedIndicator(hittable.transform));
+        return false; // Not dead
     }
-
+    public IEnumerator WasDamagedIndicator(Transform hittable)
+    {
+        SpriteRenderer spriteRenderer = hittable.GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer.color = UnityEngine.Color.red;
+        yield return new WaitForSeconds(DamagedIndicatorTime);
+        spriteRenderer.color = UnityEngine.Color.white;
+    }
     public bool ApplyDamageIfPossible(Point position, int damage)
     {
-        if(true) //Verify if on the position there's any hittable
-        {
-            HittableObject hittable = new HittableObject();//Retrieve hittable
-            TakeDamageDestroyIfNeeded(hittable, damage);
+        var thereIsHittableInX = Hittables.Where(
+            p => p.CurrentIndexInLane == position.X);
+        var thereIsHittableInPoint = thereIsHittableInX.Where(
+            p => p.LanesOccupation[position.Y] == true).ToList();
+        thereIsHittableInPoint.ForEach(hittable => TakeDamageDestroyIfNeeded(hittable, damage));
 
-            return true;
-        }
-
-        return false;
+        return thereIsHittableInPoint.Count > 0;
     }
 }

@@ -31,7 +31,10 @@ public class PlayerManager : ConductionDependentSingleton<PlayerManager>
     {
         ExecuteMoveCommand();
     }
-
+    public Point GetPlayerPositionReference()
+    {
+        return PlayerPositionReference;
+    }
     // Move functions
     public void Move(Point playerTranslate)
     {

@@ -3,11 +3,11 @@
 	"artist": "Eu",
 	"file": "Musica_01.wav",
 	"audioType": 20,
-	"amountOfLanes": 8,
-	"amountOfLaneSlots": 20,
+	"amountOfLanes": 4,
+	"amountOfLaneSlots": 6,
 	"timings": [
 		{
-			"bpm": 125,
+			"bpm": 60,
 			"offSet": 0.1,
 			"volume": 0.1
 		}
@@ -17,7 +17,7 @@
 			"guid": "4a81ae5f-9065-4e21-be98-de84bc4dd014",
 			"hittableType": "Enemy",
 			"hittableName": "Inimigo 1",
-			"maxHitpoints": 1,
+			"maxHitpoints": 2,
 			"currentDamageTaken": 0,
 			"damageOnHit": 1,
 			"showUpBeat": 1,

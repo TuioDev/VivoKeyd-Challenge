@@ -13,19 +13,28 @@ public class AttackCommand : Command
     [SerializeField] List<AttackDirectionCommand> DirectionCommands = new();
     public override void Execute()
     {
-        Point currentPosition = new Point(); //Remove after the bellow condition is done
-        if (StartFromPlayer)
+        Point currentPosition = PlayerManager.Instance.GetPlayerPositionReference();
+        if (!StartFromPlayer)
         {
-            //Set currentPosition with Player position
+            currentPosition.X = LevelManager.Instance.MaxSlotPositionInLane(currentPosition.Y);
         }
-        else
-        {
-            //Set currentPosition with Player position, but on the last slot of the lane
-        }
+
+        int damageCount = 0;
 
         foreach (AttackDirectionCommand directionCommand in DirectionCommands)
         {
-            currentPosition = directionCommand.MoveAndExecute(currentPosition, Damage);
+            var result = directionCommand.MoveAndExecute(currentPosition, Damage);
+            currentPosition = result.NewPosition;
+
+            if (result.WasDamageApplied)
+            {
+                damageCount++;
+
+                if (damageCount > PierceAmount)
+                {
+                    return;
+                }
+            }
         }
     }
 }

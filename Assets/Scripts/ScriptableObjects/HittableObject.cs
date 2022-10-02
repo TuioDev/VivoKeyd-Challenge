@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class HittableObject
+[CreateAssetMenu(fileName = "NewHittable", menuName = "SO/Hittable")]
+public class HittableObject : ScriptableObject
 {
     public string GUID;
     public string HittableType;
@@ -14,9 +15,10 @@ public class HittableObject
     public int MovePerBeat;
     public int MoveBackAmountWhenDamaged;
     public int MoveBackAmountWhenDamaging;
-    public List<bool> LanesOccupation = new();
 
-    public int CurrentIndexInLane;
+    public List<bool> LanesOccupation = new(); // Y
+    public int CurrentIndexInLane; // X
+
     public Transform transform;
 
     public override string ToString()
