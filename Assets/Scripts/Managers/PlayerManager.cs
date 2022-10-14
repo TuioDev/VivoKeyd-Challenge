@@ -12,8 +12,6 @@ public class PlayerManager : ConductionDependentSingleton<PlayerManager>
     [SerializeField] private Point PlayerPositionReference;
 
     // Attack varibles
-    [SerializeField] private GameObject PlayerAttackArea;
-    private SpriteRenderer AttackSprite;
     private bool IsAttacking = false;
     private float Timer = 0f;
     // This could be synced with the beat duration?
@@ -22,10 +20,6 @@ public class PlayerManager : ConductionDependentSingleton<PlayerManager>
     protected override void Awake()
     {
         base.Awake();
-    }
-    private void Start()
-    {
-        AttackSprite = PlayerAttackArea.GetComponent<SpriteRenderer>();
     }
     public override void OnMoveToNewBeat(ConductorSongInformation conductorSongInformation)
     {
@@ -51,19 +45,5 @@ public class PlayerManager : ConductionDependentSingleton<PlayerManager>
         {
             command.Execute();
         }
-    }
-    // Attack functions
-    public void Attack()
-    {
-        IsAttacking = true;
-        StartCoroutine(AttackAnimation());
-    }
-
-    private IEnumerator AttackAnimation()
-    {
-        AttackSprite.enabled = true;
-        yield return new WaitForSeconds(AttackDuration);
-        AttackSprite.enabled = false;
-        IsAttacking = false;
     }
 }

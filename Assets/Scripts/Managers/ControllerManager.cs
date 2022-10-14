@@ -11,6 +11,7 @@ public class ControllerManager : Singleton<ControllerManager>
     [SerializeField] private Command Attack;
 
     [SerializeField] private LinkedList<Command> CommandQueue;
+    [SerializeField] private Animator PlayerAnimator;
 
     protected override void Awake()
     {
@@ -29,7 +30,7 @@ public class ControllerManager : Singleton<ControllerManager>
         }
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.L))
         {
-            ExecuteCommandOffBeat(Attack);
+            AttackTrigger(true);
         }
     }
     public void EnqueueCommand(Command command)
@@ -55,5 +56,10 @@ public class ControllerManager : Singleton<ControllerManager>
             return firstCommmand;
         }
         return null;
+    }
+    public void AttackTrigger(bool value)
+    {
+        PlayerAnimator.SetBool("Attack", value);
+        ExecuteCommandOffBeat(Attack);
     }
 }

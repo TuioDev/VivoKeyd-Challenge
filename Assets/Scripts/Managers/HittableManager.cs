@@ -63,7 +63,8 @@ public class HittableManager : ConductionDependentSingleton<HittableManager>
 
             return true; // Dead
         }
-        StartCoroutine(WasDamagedIndicator(hittable.transform));
+        // TODO If the enemy is dead and error occurs with the coroutine
+        //StartCoroutine(WasDamagedIndicator(hittable.transform));
         return false; // Not dead
     }
     public IEnumerator WasDamagedIndicator(Transform hittable)

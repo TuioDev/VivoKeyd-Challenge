@@ -17,7 +17,7 @@
 			"guid": "4a81ae5f-9065-4e21-be98-de84bc4dd014",
 			"hittableType": "Enemy",
 			"hittableName": "Inimigo 1",
-			"maxHitpoints": 1,
+			"maxHitpoints": 2,
 			"currentDamageTaken": 0,
 			"damageOnHit": 1,
 			"showUpBeat": 11,
@@ -88,7 +88,7 @@
 		{
 			"guid": "1fd18686-6634-476c-a698-368b4ebe0749",
 			"hittableType": "Enemy",
-			"hittableName": "Inimigo 5",
+			"hittableName": "Inimigo 3",
 			"maxHitpoints": 1,
 			"currentDamageTaken": 0,
 			"damageOnHit": 1,
