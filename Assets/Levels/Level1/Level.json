@@ -9,7 +9,7 @@
 		{
 			"bpm": 154,
 			"offSet": 0.1,
-			"volume": 0.1
+			"volume": 0.5
 		}
 	],
 	"hittables": [
@@ -17,7 +17,7 @@
 			"guid": "4a81ae5f-9065-4e21-be98-de84bc4dd014",
 			"hittableType": "Enemy",
 			"hittableName": "Inimigo 1",
-			"maxHitpoints": 2,
+			"maxHitpoints": 1,
 			"currentDamageTaken": 0,
 			"damageOnHit": 1,
 			"showUpBeat": 11,

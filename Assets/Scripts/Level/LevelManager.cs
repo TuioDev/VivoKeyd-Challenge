@@ -31,7 +31,7 @@ public class LevelManager : Singleton<LevelManager>
     public void LoadBuiltInLevel(int levelIndex)
     {
         // Lose focus on the button
-        EventSystem.current.SetSelectedGameObject(null);
+        //EventSystem.current.SetSelectedGameObject(null);
 
         string filesPath = $@"{Application.dataPath}/Levels/Level{levelIndex}";
 
@@ -46,7 +46,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             CurrentAudioClip = result.AudioClip;
         }
-
+        
         CreateLanesInLevel(CurrentMusicConfiguration.AmountOfLanes, CurrentMusicConfiguration.AmountOfLaneSlots);
         SpawnManager.Instance.UpdateSpawnManagerHittablesList();
     }

@@ -12,10 +12,10 @@ public class PlayerManager : ConductionDependentSingleton<PlayerManager>
     [SerializeField] private Point PlayerPositionReference;
 
     // Attack varibles
-    private bool IsAttacking = false;
-    private float Timer = 0f;
+    //private bool IsAttacking = false;
+    //private float Timer = 0f;
     // This could be synced with the beat duration?
-    private float AttackDuration = 0.1f;
+    //private float AttackDuration = 0.1f;
 
     protected override void Awake()
     {

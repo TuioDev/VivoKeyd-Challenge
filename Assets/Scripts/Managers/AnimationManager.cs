@@ -15,7 +15,7 @@ public class AnimationManager : ConductionDependentSingleton<AnimationManager>
 
     public float beatsPerLoop;
 
-    private int completedLoops = 0;
+    //private int completedLoops = 0;
 
     private float loopPositionInBeats;
 

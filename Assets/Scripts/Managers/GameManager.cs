@@ -10,10 +10,10 @@ public partial class GameManager : Singleton<GameManager>
     [SerializeField] private GameState CurrentGameState;
     [SerializeField] private GameScene CurrentGameScene;
 
-    [SerializeField] private SceneAsset MainMenu;
-    [SerializeField] private SceneAsset InGame;
+    //[SerializeField] private SceneAsset MainMenu;
+    //[SerializeField] private SceneAsset InGame;
 
-    public void ChangeState(GameState state)
+    /*public void ChangeState(GameState state)
     {
         CurrentGameState = state;
 
@@ -32,26 +32,26 @@ public partial class GameManager : Singleton<GameManager>
             default:
                 break;
         }
-    }
+    }*/
 
-    public void ChangeScene(GameScene gameScene)
+    public void ChangeScene(int gameScene)
     {
-        string sceneName = "";
+        /*int sceneName;
         switch(gameScene)
         {
             case GameScene.Menu:
-                sceneName = MainMenu.name;
+                //sceneName = MainMenu.name;
                 ChangeState(GameState.Menu);
                 break;
             case GameScene.InGame:
-                sceneName = InGame.name;
+                //sceneName = InGame.name;
                 ChangeState(GameState.PlayingLevel);
                 break;
         }
-
-        SceneManager.LoadScene(sceneName);
+        */
+        SceneManager.LoadScene(gameScene);
     }
 
-    public void ChangeSceneToMenu() => ChangeScene(GameScene.Menu);
-    public void ChangeSceneToInGame() => ChangeScene(GameScene.InGame);
+    //public void ChangeSceneToMenu() => ChangeScene(GameScene.Menu);
+    public void ChangeSceneToInGame() => ChangeScene(1);
 }
