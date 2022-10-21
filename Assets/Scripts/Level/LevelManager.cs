@@ -1,13 +1,15 @@
 using Baracuda.Monitoring;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
 public class LevelManager : Singleton<LevelManager>
 {
-    //[Monitor(]
+    [Monitor]
     public MusicConfiguration CurrentMusicConfiguration { get; private set; }
     public AudioClip CurrentAudioClip { get; private set; }
     [SerializeField] private GameObject BaseLane;
@@ -32,7 +34,7 @@ public class LevelManager : Singleton<LevelManager>
     
     public void LoadBuiltInLevel(int levelIndex)
     {
-        string filesPath = $@"{Application.dataPath}/Levels/Level{levelIndex}";
+        string filesPath = $@"{Application.streamingAssetsPath}/Levels/Level{levelIndex}";
 
         CurrentMusicConfiguration = LevelLoader.LoadFromLocalJSON(CurrentMusicConfiguration, filesPath);
         var result = SoundLoaderManager.Instance.GetAudioClip($@"file://{filesPath}/{CurrentMusicConfiguration.File}", CurrentMusicConfiguration.AudioType);

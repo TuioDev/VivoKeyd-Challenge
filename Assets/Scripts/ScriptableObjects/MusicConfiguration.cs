@@ -1,10 +1,9 @@
 using Baracuda.Monitoring;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class MusicConfiguration : ScriptableObject
+public class MusicConfiguration : MonitoredScriptableObject
 {
     [Monitor]
     public string MusicName;
@@ -12,8 +11,11 @@ public class MusicConfiguration : ScriptableObject
     public string Artist;
     [Monitor]
     public string File;
+    [Monitor]
     public AudioType AudioType;
+    [Monitor]
     public int AmountOfLanes;
+    [Monitor]
     public int AmountOfLaneSlots;
     public List<TimingConfiguration> Timings = new();
     public List<HittableObject> Hittables = new();

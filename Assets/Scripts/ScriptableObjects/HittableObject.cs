@@ -1,9 +1,9 @@
+using Baracuda.Monitoring;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "NewHittable", menuName = "SO/Hittable")]
-public class HittableObject : ScriptableObject
+public class HittableObject : MonitoredObject
 {
     public string GUID;
     public string HittableType;
