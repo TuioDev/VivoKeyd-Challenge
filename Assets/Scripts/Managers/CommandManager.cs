@@ -1,8 +1,9 @@
+using Baracuda.Monitoring;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControllerManager : Singleton<ControllerManager>
+public class CommandManager : Singleton<CommandManager>
 {
     // MaxCommands guarantees that the player can only store 1 move, so he can replace a wrong input before the beat
     [SerializeField] private int MaxCommands = 1;
@@ -15,23 +16,16 @@ public class ControllerManager : Singleton<ControllerManager>
 
     protected override void Awake()
     {
-        CommandQueue = new LinkedList<Command>(); 
+        CommandQueue = new LinkedList<Command>();
         base.Awake();
     }
-    private void Update()
+    public void EnqueueUpwardCommand()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
-        {
-            EnqueueCommand(MoveUpward);
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
-        {
-            EnqueueCommand(MoveDownward);
-        }
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.L))
-        {
-            AttackTrigger(true);
-        }
+        EnqueueCommand(MoveUpward);
+    }
+    public void EnqueueDownwardCommand()
+    {
+        EnqueueCommand(MoveDownward);
     }
     public void EnqueueCommand(Command command)
     {
@@ -57,7 +51,7 @@ public class ControllerManager : Singleton<ControllerManager>
         }
         return null;
     }
-    public void AttackTrigger(bool value)
+    public void AttackTrigger(bool value = true)
     {
         PlayerAnimator.SetBool("Attack", value);
         ExecuteCommandOffBeat(Attack);

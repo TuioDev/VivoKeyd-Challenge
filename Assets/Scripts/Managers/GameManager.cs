@@ -1,17 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+using Baracuda.Monitoring;
 using UnityEngine;
-using System.Linq;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 public partial class GameManager : Singleton<GameManager>
 {
-    [SerializeField] private GameState CurrentGameState;
+    [Monitor]
+    [SerializeField] 
+    private GameState CurrentGameState;
     [SerializeField] private GameScene CurrentGameScene;
 
     //[SerializeField] private SceneAsset MainMenu;
     //[SerializeField] private SceneAsset InGame;
+
+    public GameState GetCurrentGameState() => CurrentGameState;
 
     /*public void ChangeState(GameState state)
     {

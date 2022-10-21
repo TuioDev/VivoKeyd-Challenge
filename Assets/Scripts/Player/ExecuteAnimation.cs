@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ExecuteAnimation : MonoBehaviour
 {
-    [SerializeField] private ControllerManager Manager;
+    [SerializeField] private CommandManager Manager;
     
     // Start is called before the first frame update
     void Start()

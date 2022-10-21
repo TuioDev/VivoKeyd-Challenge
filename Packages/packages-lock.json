@@ -1,5 +1,21 @@
 {
   "dependencies": {
+    "com.baracuda.runtime-monitoring": {
+      "version": "3.2.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.baracuda.thread-dispatcher": "5.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.baracuda.thread-dispatcher": {
+      "version": "5.0.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.unity.2d.animation": {
       "version": "7.0.6",
       "depth": 0,

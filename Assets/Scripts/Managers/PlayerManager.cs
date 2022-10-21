@@ -40,7 +40,7 @@ public class PlayerManager : ConductionDependentSingleton<PlayerManager>
 
     private void ExecuteMoveCommand()
     {
-        Command command = ControllerManager.Instance.GetNextCommand();
+        Command command = CommandManager.Instance.GetNextCommand();
         if (command != null)
         {
             command.Execute();
