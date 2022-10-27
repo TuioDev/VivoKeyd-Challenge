@@ -50,6 +50,7 @@ public class LevelManager : Singleton<LevelManager>
         
         CreateLanesInLevel(CurrentMusicConfiguration.AmountOfLanes, CurrentMusicConfiguration.AmountOfLaneSlots);
         SpawnManager.Instance.UpdateSpawnManagerHittablesList();
+        ScoreManager.Instance.SetMaxScore(CurrentMusicConfiguration.Hittables.Count);
     }
 
     public GameObject GetHittablesParentInLane(int laneIndex)

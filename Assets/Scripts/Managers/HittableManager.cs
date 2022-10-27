@@ -52,7 +52,7 @@ public class HittableManager : ConductionDependentSingleton<HittableManager>
             hittable.transform.position = newPosition;
         }
     }
-    private bool TakeDamageDestroyIfNeeded(HittableObject hittable, int damage)
+    private bool TakeDamageDestroyIfNeeded(HittableObject hittable, int damage, bool sourceIsPlayer = false)
     {
         hittable.CurrentDamageTaken += damage;
 
@@ -60,6 +60,8 @@ public class HittableManager : ConductionDependentSingleton<HittableManager>
         {
             Destroy(hittable.transform.gameObject);
             Hittables.Remove(hittable);
+
+            if(sourceIsPlayer) ScoreManager.Instance.AddToScore(1);
 
             return true; // Dead
         }
@@ -80,7 +82,7 @@ public class HittableManager : ConductionDependentSingleton<HittableManager>
             p => p.CurrentIndexInLane == position.X);
         var thereIsHittableInPoint = thereIsHittableInX.Where(
             p => p.LanesOccupation[position.Y] == true).ToList();
-        thereIsHittableInPoint.ForEach(hittable => TakeDamageDestroyIfNeeded(hittable, damage));
+        thereIsHittableInPoint.ForEach(hittable => TakeDamageDestroyIfNeeded(hittable, damage, true));
 
         return thereIsHittableInPoint.Count > 0;
     }
